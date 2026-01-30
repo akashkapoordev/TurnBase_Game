@@ -20,7 +20,10 @@ public class MousePosition : MonoBehaviour
     public static Vector3 GetMousePosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out RaycastHit hitInfo, float.MaxValue,Instance.mousePlaneLayerMask);
-        return hitInfo.point;
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, float.MaxValue, Instance.mousePlaneLayerMask))
+        {
+            return hitInfo.point;
+        }
+        return Vector3.zero;
     }
 }
